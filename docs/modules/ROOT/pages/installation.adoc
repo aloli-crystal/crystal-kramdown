@@ -1,0 +1,20 @@
+= Installation
+
+== Add the Dependency
+
+Add crystal-kramdown to your `shard.yml`:
+
+[source,yaml]
+----
+dependencies:
+  crystal-kramdown:
+    github: aloli-crystal/crystal-kramdown
+    version: ~> 2.5.2
+----
+
+Then run:
+
+[source,bash]
+----
+shards install
+----

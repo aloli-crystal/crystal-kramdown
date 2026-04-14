@@ -1,0 +1,18 @@
+= Kramdown
+
+A pure Crystal port of the https://github.com/gettalong/kramdown[kramdown] Ruby gem (v2.5.2).
+Full Markdown parser producing an AST, with HTML and plain-text output converters.
+Supports CommonMark, GFM extensions, footnotes and definition lists.
+
+== Features
+
+* *CommonMark*: headings (ATX and Setext), paragraphs, bold, italic, code spans, links, images, lists (ordered and unordered), blockquotes, fenced and indented code blocks, horizontal rules, line breaks, escape sequences
+* *GFM extensions*: tables with alignment, strikethrough (`~~text~~`), task lists (`- [x]`), autolinks (bare URLs)
+* *kramdown extensions*: footnotes, definition lists, reference links
+* HTML and plain-text output converters
+* Full AST access
+* Command-line interface
+
+== License
+
+MIT

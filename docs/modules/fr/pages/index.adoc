@@ -1,0 +1,18 @@
+= Kramdown
+
+Un portage Crystal pur du gem Ruby https://github.com/gettalong/kramdown[kramdown] (v2.5.2).
+Analyseur Markdown complet produisant un AST, avec des convertisseurs HTML et texte brut.
+Prend en charge CommonMark, les extensions GFM, les notes de bas de page et les listes de definitions.
+
+== Fonctionnalites
+
+* *CommonMark* : titres (ATX et Setext), paragraphes, gras, italique, code en ligne, liens, images, listes (ordonnees et non ordonnees), citations, blocs de code (delimites et indentes), lignes horizontales, retours a la ligne, sequences d'echappement
+* *Extensions GFM* : tableaux avec alignement, texte barre (`~~texte~~`), listes de taches (`- [x]`), liens automatiques (URLs brutes)
+* *Extensions kramdown* : notes de bas de page, listes de definitions, liens par reference
+* Convertisseurs HTML et texte brut
+* Acces complet a l'AST
+* Interface en ligne de commande
+
+== Licence
+
+MIT

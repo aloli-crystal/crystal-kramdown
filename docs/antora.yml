@@ -1,0 +1,6 @@
+name: crystal-kramdown
+title: 'Kramdown'
+version: '2.5.2'
+nav:
+  - modules/ROOT/nav.adoc
+  - modules/fr/nav.adoc
