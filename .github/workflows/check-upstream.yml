@@ -1,0 +1,35 @@
+name: Check upstream kramdown
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get upstream kramdown version
+        id: upstream
+        run: |
+          LATEST=$(curl -s https://rubygems.org/api/v1/gems/kramdown.json | jq -r '.version')
+          echo "version=$LATEST" >> "$GITHUB_OUTPUT"
+          echo "Upstream kramdown version: $LATEST"
+
+      - name: Get current tracked version
+        id: current
+        run: |
+          CURRENT=$(grep 'UPSTREAM_VERSION' src/kramdown.cr | head -1 | sed 's/.*"\(.*\)".*/\1/')
+          echo "version=$CURRENT" >> "$GITHUB_OUTPUT"
+          echo "Current tracked version: $CURRENT"
+
+      - name: Compare versions
+        run: |
+          if [ "${{ steps.upstream.outputs.version }}" != "${{ steps.current.outputs.version }}" ]; then
+            echo "::warning::New kramdown version available: ${{ steps.upstream.outputs.version }} (current: ${{ steps.current.outputs.version }})"
+          else
+            echo "Up to date with upstream kramdown ${{ steps.current.outputs.version }}"
+          fi

@@ -1,0 +1,82 @@
+= crystal-kramdown
+:toc:
+:source-language: crystal
+
+Un portage Crystal pur du gem Ruby https://github.com/gettalong/kramdown[kramdown] (v2.5.2, 231M+ de téléchargements).
+Analyseur Markdown complet produisant un AST, avec des convertisseurs HTML et texte brut.
+Prend en charge CommonMark, les extensions GFM, les notes de bas de page et les listes de définitions.
+
+== Installation
+
+Ajoutez à votre `shard.yml` :
+
+[source,yaml]
+----
+dependencies:
+  crystal-kramdown:
+    github: aloli-crystal/crystal-kramdown
+    version: ~> 2.5.2
+----
+
+Puis exécutez `shards install`.
+
+== Utilisation
+
+=== Conversion basique
+
+[source,crystal]
+----
+require "kramdown"
+
+doc = Kramdown::Document.new("# Bonjour **monde**")
+
+html = doc.to_html   # => "<h1>Bonjour <strong>monde</strong></h1>\n"
+text = doc.to_text   # => "Bonjour monde\n"
+ast  = doc.root      # => Kramdown::Element (racine de l'AST)
+----
+
+=== Syntaxe prise en charge
+
+* *CommonMark* : titres (ATX et Setext), paragraphes, gras, italique, code en ligne, liens, images, listes (ordonnées et non ordonnées), citations, blocs de code (délimités et indentés), lignes horizontales, retours à la ligne, séquences d'échappement
+* *Extensions GFM* : tableaux avec alignement, texte barré (`~~texte~~`), listes de tâches (`- [x]`), liens automatiques (URLs brutes)
+* *Extensions kramdown* : notes de bas de page, listes de définitions, liens par référence
+
+=== CLI
+
+[source,bash]
+----
+crystal-kramdown input.md                 # HTML sur stdout
+crystal-kramdown input.md -o output.html  # HTML dans un fichier
+crystal-kramdown input.md --to text       # texte brut
+crystal-kramdown -v                       # version
+crystal-kramdown -h                       # aide
+----
+
+=== Accès à l'AST
+
+[source,crystal]
+----
+doc = Kramdown::Document.new("# Titre\n\nParagraphe avec du **gras**.")
+root = doc.root
+
+root.children.each do |el|
+  puts "#{el.type}: #{el.value}"
+end
+----
+
+== Upstream
+
+Ce shard est un portage Crystal de https://github.com/gettalong/kramdown[kramdown] v{upstream_version}.
+La version upstream est suivie dans `Kramdown::UPSTREAM_VERSION`.
+
+== Développement
+
+[source,bash]
+----
+crystal spec
+crystal tool format src/ spec/
+----
+
+== Licence
+
+MIT -- voir link:LICENSE[LICENSE].

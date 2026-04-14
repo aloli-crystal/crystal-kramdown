@@ -1,0 +1,84 @@
+#!/usr/bin/env crystal
+require "../src/kramdown"
+
+output_file : String? = nil
+format = "html"
+input_file : String? = nil
+
+args = ARGV.dup
+i = 0
+while i < args.size
+  case args[i]
+  when "-v", "--version"
+    puts "crystal-kramdown #{Kramdown::VERSION} (upstream kramdown #{Kramdown::UPSTREAM_VERSION})"
+    exit 0
+  when "-h", "--help"
+    puts <<-HELP
+    Usage: crystal-kramdown [OPTIONS] INPUT
+
+    A pure Crystal Markdown parser (port of kramdown #{Kramdown::UPSTREAM_VERSION}).
+
+    Options:
+      -o, --output FILE   Write output to FILE instead of stdout
+      --to FORMAT         Output format: html (default), text
+      -v, --version       Show version
+      -h, --help          Show this help
+
+    Examples:
+      crystal-kramdown README.md
+      crystal-kramdown README.md -o output.html
+      crystal-kramdown README.md --to text
+    HELP
+    exit 0
+  when "-o", "--output"
+    i += 1
+    if i < args.size
+      output_file = args[i]
+    else
+      STDERR.puts "Error: -o requires a filename"
+      exit 1
+    end
+  when "--to"
+    i += 1
+    if i < args.size
+      format = args[i]
+    else
+      STDERR.puts "Error: --to requires a format (html, text)"
+      exit 1
+    end
+  else
+    if args[i].starts_with?("-")
+      STDERR.puts "Unknown option: #{args[i]}"
+      exit 1
+    end
+    input_file = args[i]
+  end
+  i += 1
+end
+
+unless input_file
+  STDERR.puts "Error: no input file specified. Use -h for help."
+  exit 1
+end
+
+unless File.exists?(input_file.not_nil!)
+  STDERR.puts "Error: file not found: #{input_file}"
+  exit 1
+end
+
+source = File.read(input_file.not_nil!)
+doc = Kramdown::Document.new(source)
+
+result = case format
+         when "html" then doc.to_html
+         when "text" then doc.to_text
+         else
+           STDERR.puts "Unknown format: #{format}. Use html or text."
+           exit 1
+         end
+
+if out = output_file
+  File.write(out, result)
+else
+  print result
+end

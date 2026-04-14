@@ -1,0 +1,14 @@
+name: crystal-kramdown
+version: 2.5.2
+
+description: |
+  A pure Crystal port of the kramdown Ruby gem — a Markdown parser
+  producing an AST with HTML and plain-text output converters.
+  Supports CommonMark, GFM extensions, footnotes and definition lists.
+
+authors:
+  - Philippe Nénert <philippe@aloli.fr>
+
+crystal: ">= 1.19.0"
+
+license: MIT

@@ -1,0 +1,82 @@
+= crystal-kramdown
+:toc:
+:source-language: crystal
+
+A pure Crystal port of the https://github.com/gettalong/kramdown[kramdown] Ruby gem (v2.5.2, 231M+ downloads).
+Full Markdown parser producing an AST, with HTML and plain-text output converters.
+Supports CommonMark, GFM extensions, footnotes and definition lists.
+
+== Installation
+
+Add to your `shard.yml`:
+
+[source,yaml]
+----
+dependencies:
+  crystal-kramdown:
+    github: aloli-crystal/crystal-kramdown
+    version: ~> 2.5.2
+----
+
+Then run `shards install`.
+
+== Usage
+
+=== Basic conversion
+
+[source,crystal]
+----
+require "kramdown"
+
+doc = Kramdown::Document.new("# Hello **world**")
+
+html = doc.to_html   # => "<h1>Hello <strong>world</strong></h1>\n"
+text = doc.to_text   # => "Hello world\n"
+ast  = doc.root      # => Kramdown::Element (AST root)
+----
+
+=== Supported syntax
+
+* *CommonMark*: headings (ATX and Setext), paragraphs, bold, italic, code spans, links, images, lists (ordered and unordered), blockquotes, fenced and indented code blocks, horizontal rules, line breaks, escape sequences
+* *GFM extensions*: tables with alignment, strikethrough (`~~text~~`), task lists (`- [x]`), autolinks (bare URLs)
+* *kramdown extensions*: footnotes, definition lists, reference links
+
+=== CLI
+
+[source,bash]
+----
+crystal-kramdown input.md                 # HTML to stdout
+crystal-kramdown input.md -o output.html  # HTML to file
+crystal-kramdown input.md --to text       # plain text
+crystal-kramdown -v                       # version
+crystal-kramdown -h                       # help
+----
+
+=== AST access
+
+[source,crystal]
+----
+doc = Kramdown::Document.new("# Title\n\nParagraph with **bold**.")
+root = doc.root
+
+root.children.each do |el|
+  puts "#{el.type}: #{el.value}"
+end
+----
+
+== Upstream
+
+This shard is a Crystal port of https://github.com/gettalong/kramdown[kramdown] v{upstream_version}.
+The upstream version is tracked in `Kramdown::UPSTREAM_VERSION`.
+
+== Development
+
+[source,bash]
+----
+crystal spec
+crystal tool format src/ spec/
+----
+
+== License
+
+MIT -- see link:LICENSE[LICENSE].
