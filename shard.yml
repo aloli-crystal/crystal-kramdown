@@ -1,5 +1,5 @@
 name: crystal-kramdown
-version: 2.5.2
+version: 2.5.2.1
 
 description: |
   A pure Crystal port of the kramdown Ruby gem — a Markdown parser
