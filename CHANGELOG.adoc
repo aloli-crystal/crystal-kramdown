@@ -3,6 +3,28 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v2.5.2.2 — 2026-04-23
+
+End-to-end integration test suite on top of the existing per-element
+unit specs. The unit specs cover every construct in isolation (headings,
+lists, tables, footnotes, GFM…); these new specs round-trip realistic
+documents through the real parser + both converters (`to_html` and
+`to_text`) and assert that nothing is lost along the way.
+
+* 4 new spec files under `spec/integration/`: **sanity** (pipeline
+  runs, empty docs, markup stripped in text), **full_document**
+  (README-shaped fixture mixing headings, lists, fenced code in two
+  languages, GFM table, blockquote, thematic break, link), **consistency**
+  (words present in both `to_html` and `to_text` for paragraphs,
+  lists, headings, links and code), **gfm_mixed** (task lists, GFM
+  table with inline markup in cells, fenced code + blockquote + list,
+  footnotes). **15 integration tests, 80 unit tests, 95 total — all
+  green.**
+* New helper `IntegrationHelper` in `spec/integration/spec_helper.cr`
+  with `to_html`, `to_text` and `fixture` primitives plus a
+  `spec/integration/fixtures/readme.md` test asset. No external tool
+  dependency.
+
 == v2.5.2.1 — 2026-04-22
 
 * Add the *ameba* linter to the CI pipeline with a shared `.ameba.yml` config aligned with the Crystal ecosystem.

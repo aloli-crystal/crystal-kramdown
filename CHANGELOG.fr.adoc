@@ -3,6 +3,31 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v2.5.2.2 — 2026-04-23
+
+Suite de tests d'intégration bout-en-bout en complément des specs
+unitaires existantes. Les specs unitaires couvrent chaque construction
+isolément (titres, listes, tableaux, notes de bas de page, GFM…) ;
+ces nouveaux specs font circuler des documents réalistes à travers le
+vrai parseur + les deux converters (`to_html` et `to_text`) et
+vérifient que rien ne se perd.
+
+* 4 nouveaux fichiers de specs sous `spec/integration/` : **sanity**
+  (pipeline fonctionne, docs vides, markup strippé en texte),
+  **full_document** (fixture de style README mêlant titres, listes,
+  blocs de code fenced dans deux langages, tableau GFM, blockquote,
+  règle horizontale, lien), **consistency** (mots présents à la fois
+  dans `to_html` et `to_text` pour paragraphes, listes, titres,
+  liens et code), **gfm_mixed** (task lists, tableaux GFM avec
+  markup dans les cellules, code fenced + blockquote + liste, notes
+  de bas de page). **15 tests d'intégration, 80 tests unitaires,
+  95 au total — tous verts.**
+* Nouveau helper `IntegrationHelper` dans
+  `spec/integration/spec_helper.cr` avec les primitives `to_html`,
+  `to_text` et `fixture`, et un fichier fixture
+  `spec/integration/fixtures/readme.md`. Aucune dépendance sur un
+  outil externe.
+
 == v2.5.2.1 — 2026-04-22
 
 * Ajout du linter *ameba* à la CI avec configuration `.ameba.yml` partagée alignée sur l'écosystème Crystal.
