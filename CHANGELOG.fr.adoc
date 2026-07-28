@@ -3,6 +3,11 @@
 :toc-title: Versions
 :toclevels: 2
 
+== v2.5.2.4 — 2026-07-28
+
+* Renomme le shard `crystal-kramdown` → `kramdown` (abandon du préfixe `crystal-` ; l'organisation `aloli-crystal` porte déjà le contexte « Crystal »).
+* Renomme en conséquence le script CLI `bin/crystal-kramdown` → `bin/kramdown`.
+
 == v2.5.2.2 — 2026-04-23
 
 Suite de tests d'intégration bout-en-bout en complément des specs

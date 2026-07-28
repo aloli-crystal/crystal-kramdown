@@ -2,14 +2,14 @@
 
 == Ajouter la dependance
 
-Ajoutez crystal-kramdown dans votre `shard.yml` :
+Ajoutez kramdown dans votre `shard.yml` :
 
 [source,yaml]
 ----
 dependencies:
-  crystal-kramdown:
-    github: aloli-crystal/crystal-kramdown
-    version: ~> 2.5.2
+  kramdown:
+    github: aloli-crystal/kramdown
+    version: "~> 2.5.2.4"
 ----
 
 Puis lancez :

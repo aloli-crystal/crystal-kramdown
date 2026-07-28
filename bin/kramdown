@@ -10,11 +10,11 @@ i = 0
 while i < args.size
   case args[i]
   when "-v", "--version"
-    puts "crystal-kramdown #{Kramdown::VERSION} (upstream kramdown #{Kramdown::UPSTREAM_VERSION})"
+    puts "kramdown #{Kramdown::VERSION} (upstream kramdown #{Kramdown::UPSTREAM_VERSION})"
     exit 0
   when "-h", "--help"
     puts <<-HELP
-    Usage: crystal-kramdown [OPTIONS] INPUT
+    Usage: kramdown [OPTIONS] INPUT
 
     A pure Crystal Markdown parser (port of kramdown #{Kramdown::UPSTREAM_VERSION}).
 
@@ -25,9 +25,9 @@ while i < args.size
       -h, --help          Show this help
 
     Examples:
-      crystal-kramdown README.md
-      crystal-kramdown README.md -o output.html
-      crystal-kramdown README.md --to text
+      kramdown README.md
+      kramdown README.md -o output.html
+      kramdown README.md --to text
     HELP
     exit 0
   when "-o", "--output"

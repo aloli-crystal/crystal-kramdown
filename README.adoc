@@ -1,4 +1,4 @@
-= crystal-kramdown
+= kramdown
 :toc:
 :source-language: crystal
 
@@ -13,9 +13,9 @@ Add to your `shard.yml`:
 [source,yaml]
 ----
 dependencies:
-  crystal-kramdown:
-    github: aloli-crystal/crystal-kramdown
-    version: ~> 2.5.2
+  kramdown:
+    github: aloli-crystal/kramdown
+    version: "~> 2.5.2.4"
 ----
 
 Then run `shards install`.
@@ -45,11 +45,11 @@ ast  = doc.root      # => Kramdown::Element (AST root)
 
 [source,bash]
 ----
-crystal-kramdown input.md                 # HTML to stdout
-crystal-kramdown input.md -o output.html  # HTML to file
-crystal-kramdown input.md --to text       # plain text
-crystal-kramdown -v                       # version
-crystal-kramdown -h                       # help
+kramdown input.md                 # HTML to stdout
+kramdown input.md -o output.html  # HTML to file
+kramdown input.md --to text       # plain text
+kramdown -v                       # version
+kramdown -h                       # help
 ----
 
 === AST access

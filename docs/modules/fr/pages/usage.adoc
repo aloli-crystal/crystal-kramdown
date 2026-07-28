@@ -17,11 +17,11 @@ ast  = doc.root      # => Kramdown::Element (racine de l'AST)
 
 [source,bash]
 ----
-crystal-kramdown input.md                 # HTML sur stdout
-crystal-kramdown input.md -o output.html  # HTML dans un fichier
-crystal-kramdown input.md --to text       # texte brut
-crystal-kramdown -v                       # version
-crystal-kramdown -h                       # aide
+kramdown input.md                 # HTML sur stdout
+kramdown input.md -o output.html  # HTML dans un fichier
+kramdown input.md --to text       # texte brut
+kramdown -v                       # version
+kramdown -h                       # aide
 ----
 
 == Acces a l'AST
